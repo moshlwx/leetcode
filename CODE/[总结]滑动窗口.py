@@ -17,8 +17,8 @@ def sliding_window(s: str, t: str):
     left = 0
     right = 0
     window = Counter()
-    s_counter = Counter(s)
-    t_counter = Counter(t)
+    # s_counter = Counter(s)
+    # t_counter = Counter(t)
     valid_flag = False
     res = 0
 
