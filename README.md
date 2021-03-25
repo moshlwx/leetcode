@@ -8,7 +8,8 @@
 1. 识别定义dp[j]：到第j步
 ##### 适用场景
 1. 背包问题
-2. 
+
+
 示例代码
 ```python
 def problem(nums: list):
@@ -24,3 +25,5 @@ def problem(nums: list):
 #### 题目
 - [剑指 Offer 46. 把数字翻译成字符串](https://github.com/moshlwx/leetcode/blob/master/CODE/%E5%89%91%E6%8C%87%20Offer%2046.%20%E6%8A%8A%E6%95%B0%E5%AD%97%E7%BF%BB%E8%AF%91%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2.py)
 - [55-跳跃游戏](https://github.com/moshlwx/leetcode/blob/master/CODE/55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F.py)
+- [剑指 Offer 42. 连续子数组的最大和]()
+  - 限制连续子数组时需要注意定义dp[i]为截止（包含）当前元素的最大子序列和，然后更新结果变量
