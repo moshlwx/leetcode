@@ -1,6 +1,6 @@
 # 算法总结
 
-## 【算法】动态规划
+## 动态规划
 ### 思路
 - [[总结]动态规划](https://github.com/moshlwx/leetcode/blob/master/CODE/%5B%E6%80%BB%E7%BB%93%5D%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.py)
 - 背包问题九讲
@@ -30,6 +30,13 @@ def problem(nums: list):
 - [55-跳跃游戏](https://github.com/moshlwx/leetcode/blob/master/CODE/55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F.py)
 - [剑指 Offer 42. 连续子数组的最大和](https://github.com/moshlwx/leetcode/blob/master/CODE/%E5%89%91%E6%8C%87%20Offer%2042.%20%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C.py)
   - 限制连续子数组时需要注意定义dp[i]为截止（包含）当前元素的最大子序列和，然后更新结果变量
+
+## 分治思想
+## 二叉树
+## DFS
+## BFS
+## 滑动窗口
+## 二分查找
 
 ## 位运算
 [Python位运算及运算符优先级](https://www.runoob.com/python/python-operators.html)
