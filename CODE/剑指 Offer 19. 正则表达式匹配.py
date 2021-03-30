@@ -47,10 +47,12 @@ class Solution:
         '''
         s p两个序列的遍历，二维动态规划
         '''
-        dp = [[False] * (len(p)+1) for _ in range(len(s)+1)]
+        dp = [[False] * (len(p)+1) for _ in range(len(s)+1)
+              ]  # 二维列表，第二次需要用列表生成器的方式，避免*[[]]会引用内部列表
 
         dp[0][0] = True
 
+        # 初始化范围要与后面更新值的操作拉通，更新不到的位置需要做初始化
         for j in range(2, len(p)+1, 2):
             dp[0][j] = dp[0][j-2] and p[j-1] == '*'
 
@@ -66,12 +68,11 @@ class Solution:
                         or (dp[i-1][j] and p[j-2] == '.')
 
                 else:
-                    # 当其他字符
+                    # 当其他字符时，通配符或者当前元素相等
                     dp[i][j] = (dp[i-1][j-1] and p[j-1] == '.') \
                         or (dp[i-1][j-1] and p[j-1] == s[i-1])
 
         return dp[-1][-1]
-
 
         # 输入:
 s = "mississippi"
