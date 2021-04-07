@@ -1,25 +1,30 @@
+[toc]
 # 数据结构
 ## 栈
-#### 题目
+### 题目
 - [剑指 Offer 31. 栈的压入、弹出序列](CODE/剑指%20Offer%2031.%20栈的压入、弹出序列.py)
 
 ## 二叉树
-#### 题目
+### 题目
 - [剑指 Offer 28. 对称的二叉树](CODE/剑指%20Offer%2028.%20对称的二叉树.py)
 - [236. 二叉树的最近公共祖先](CODE/236-二叉树的最近公共祖先.py)
 - [105. 从前序与中序遍历序列构造二叉树](CODE/105-从前序与中序遍历序列构造二叉树.py)
 # 算法总结
 
-## 动态规划
+## 双指针
+
+### 题目
+- [剑指 Offer 58 - I. 翻转单词顺序](CODE/剑指%20Offer%2058%20-%20I.%20翻转单词顺序.py)
+- [剑指 Offer 57. 和为s的两个数字](CODE/剑指%20Offer%2057.%20和为s的两个数字.py)
+
+## 动态规划-背包问题
 ### 思路
 - [[总结]动态规划](https://github.com/moshlwx/leetcode/blob/master/CODE/%5B%E6%80%BB%E7%BB%93%5D%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.py)
 - 背包问题九讲
   - 来自 <https://github.com/tianyicui/pack> or <https://www.kancloud.cn/kancloud/pack> 
-
-#### 动态规划-背包问题
-##### 基本流程
+#### 基本流程
 1. 识别定义dp[j]：到第j步
-##### 适用场景
+#### 适用场景
 1. 背包问题
 
 
@@ -35,7 +40,7 @@ def problem(nums: list):
                 dp[j] = max(dp[j], dp[j-k]+nums[j-k-1])
     return dp
 ```
-#### 题目
+### 题目
 - [剑指 Offer 46. 把数字翻译成字符串](CODE/剑指%20Offer%2046.%20把数字翻译成字符串.py)
 - [55-跳跃游戏](CODE/55-跳跃游戏.py)
 - [剑指 Offer 42. 连续子数组的最大和](CODE/剑指%20Offer%2042.%20连续子数组的最大和.py)
@@ -48,21 +53,24 @@ def problem(nums: list):
 
 ## DFS
 
-#### 题目
+### 题目
 - [剑指 Offer 28. 对称的二叉树](CODE/剑指%20Offer%2028.%20对称的二叉树.py)
 - [139. 单词拆分](CODE/139-单词拆分.py)
 
 
 ## BFS
-#### 题目
+### 题目
 - [139. 单词拆分](CODE/139-单词拆分.py)
 
 ## 滑动窗口
 
-#### 题目
+### 题目
 - [3. 无重复字符的最长子串](CODE/3-无重复字符的最长子串.py)
 ## 二分查找
-
+有序序列中查找目标值或边界的方法，复杂度一般`O(logN)`
+### 题目
+- [剑指 Offer 57. 和为s的两个数字](CODE/剑指%20Offer%2057.%20和为s的两个数字.py)
+  - 一种`O(NlogN)`的解法，通过二分查找有序数组中的目标值，但是10^6的数据量会超时
 ## 位运算
 [Python位运算及运算符优先级](https://www.runoob.com/python/python-operators.html)
 <table class="reference">
