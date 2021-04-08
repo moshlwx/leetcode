@@ -23,6 +23,7 @@
 数组的数取值为 [0, 13] .
 '''
 
+
 class Solution:
 
     def isStraight(self, nums) -> bool:
@@ -42,10 +43,8 @@ class Solution:
             if n in visited or max_val - min_val >= 5:
                 return False
             visited.add(n)
-        
-        return True
-        
 
+        return True
 
     def isStraight_指针(self, nums) -> bool:
         '''判断一串数字是否连续序，同时0可以为滑动窗口
@@ -58,7 +57,7 @@ class Solution:
         while nums[cur] == 0:
             cur += 1
             lmt += 1
-        
+
         pre = nums[cur] - 1
 
         while cur < len(nums):
@@ -66,10 +65,11 @@ class Solution:
                 lmt -= (nums[cur] - pre - 1)
             else:
                 return False
-            
+
             pre = nums[cur]
             cur += 1
         return True
+
 
 nums = [0, 0, 6, 7, 5]
 print(Solution().isStraight(nums))
