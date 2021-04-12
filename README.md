@@ -9,6 +9,51 @@
 - [剑指 Offer 28. 对称的二叉树](CODE/剑指%20Offer%2028.%20对称的二叉树.py)
 - [236. 二叉树的最近公共祖先](CODE/236-二叉树的最近公共祖先.py)
 - [105. 从前序与中序遍历序列构造二叉树](CODE/105-从前序与中序遍历序列构造二叉树.py)
+## 堆
+
+[引用自python doc](https://docs.python.org/zh-cn/3.8/library/heapq.html)
+
+堆是一个二叉树，它的每个父节点的值都只会小于或等于所有孩子节点（的值）。 
+它使用了数组来实现：从零开始计数，对于所有的 k ，都有 heap[k] <= heap[2*k+1] 和 heap[k] <= heap[2*k+2]。
+为了便于比较，不存在的元素被认为是无限大。 
+堆最有趣的特性在于**最小的元素总是在根结点**：heap[0]。
+
+    定义了以下函数：
+
+    heapq.heappush(heap, item)
+    将 item 的值加入 heap 中，保持堆的不变性。
+
+    heapq.heappop(heap)
+    弹出并返回 heap 的最小的元素，保持堆的不变性。如果堆为空，抛出 IndexError 。使用 heap[0] ，可以只访问最小的元素而不弹出它。
+
+    heapq.heappushpop(heap, item)
+    将 item 放入堆中，然后弹出并返回 heap 的最小元素。该组合操作比先调用 heappush() 再调用 heappop() 运行起来更有效率。
+
+    heapq.heapify(x)
+    将list x 转换成堆，原地，线性时间内。
+
+    heapq.heapreplace(heap, item)
+    弹出并返回 heap 中最小的一项，同时推入新的 item。 堆的大小不变。 如果堆为空则引发 IndexError。
+
+    这个单步骤操作比 heappop() 加 heappush() 更高效，并且在使用固定大小的堆时更为适宜。 pop/push 组合总是会从堆中返回一个元素并将其替换为 item。
+
+    返回的值可能会比添加的 item 更大。 如果不希望如此，可考虑改用 heappushpop()。 它的 push/pop 组合会返回两个值中较小的一个，将较大的值留在堆中。
+
+Python 默认实现是最小堆，可以用负值的方式实现最大堆:
+```python
+heap_small = []
+heap_big = []
+
+heappush(heap_small, 1)
+heappush(heap_big, -1)
+heappush(heap_small, 2)
+heappush(heap_big, -2)
+
+print(heap_small[0], -heap_big[0]) # output: 1, 2
+print(heappop(heap_small), -heappop(heap_big)) # output: 1, 2
+```
+### 题目
+- [剑指 Offer 41. 数据流中的中位数](CODE/剑指%20Offer%2041.%20数据流中的中位数.py)
 # 算法总结
 
 ## 双指针
