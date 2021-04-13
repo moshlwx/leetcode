@@ -48,9 +48,11 @@ class MedianFinder:
     def addNum(self, num: int) -> None:
         if len(self.bigger) != len(self.smaller):
             heappush(self.bigger, num)
+            # 当为奇数时，将num插入到较大值中，然后左移较大半区的最小值到较小半区
             heappush(self.smaller, -heappop(self.bigger))
         else:
             heappush(self.smaller, -num)
+            # 当为偶数时，将num插入到较小值中，然后右移移较小半区的最大值到较大半区
             heappush(self.bigger, -heappop(self.smaller))
 
     def findMedian(self) -> float:
