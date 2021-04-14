@@ -25,7 +25,8 @@ class Solution:
         1. 上下界在m,n内，不为负数
         2. 数位和<k
         '''
-        if not (x <= m and x >= 0 and y <= n and y >= 0):
+        # ？？？作为类函数时，不能直接使用调用函数的变量，本地IDE不报错，力扣会报错
+        if not (x < m and x >= 0 and y < n and y >= 0):
             return False
 
         xs = sum([int(i) for i in str(x)])
@@ -69,16 +70,16 @@ class Solution:
         while not q.empty():
             cur = q.get()
 
-            for n in [(cur[0], cur[1]+1), (cur[0], cur[1]-1), (cur[0]+1, cur[1]), (cur[0]-1, cur[1])]:
-                
-                if n not in visited and self.check_range(n[0], n[1]):
-                    q.put(n)
-                    visited.add(n)
-
+            for c in [(cur[0], cur[1]+1), (cur[0], cur[1]-1),\
+                 (cur[0]+1, cur[1]), (cur[0]-1, cur[1])]:
+                if c not in visited and check_range(c[0], c[1]):
+                    q.put(c)
+                    visited.add(c)
+        # print(visited)
         return len(visited)
 
     def movingCount(self, m: int, n: int, k: int):
-        '''动态规划
+        '''动态规划(未运行通过)
         dp[x][y]，运动范围为x,y时，可达个数
         dp[i][j] = max(dp[i][j-1]+check_range(i, j), dp[i-1][j]+check_range(i, j))
         '''
