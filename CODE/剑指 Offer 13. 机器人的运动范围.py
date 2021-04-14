@@ -70,9 +70,9 @@ class Solution:
         while not q.empty():
             cur = q.get()
 
-            for c in [(cur[0], cur[1]+1), (cur[0], cur[1]-1),\
-                 (cur[0]+1, cur[1]), (cur[0]-1, cur[1])]:
-                if c not in visited and check_range(c[0], c[1]):
+            for c in [(cur[0], cur[1]+1), (cur[0], cur[1]-1),
+                      (cur[0]+1, cur[1]), (cur[0]-1, cur[1])]:
+                if c not in visited and self.check_range(c[0], c[1]):
                     q.put(c)
                     visited.add(c)
         # print(visited)
