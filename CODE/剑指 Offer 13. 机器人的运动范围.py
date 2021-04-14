@@ -70,9 +70,9 @@ class Solution:
             cur = q.get()
 
             for n in [(cur[0], cur[1]+1), (cur[0], cur[1]-1), (cur[0]+1, cur[1]), (cur[0]-1, cur[1])]:
-                q.put(n)
-                if n not in visited and self.check_range(cur[0], cur[1]):
-                    # q.put(n)
+                
+                if n not in visited and self.check_range(n[0], n[1]):
+                    q.put(n)
                     visited.add(n)
 
         return len(visited)
@@ -101,4 +101,4 @@ m = 10
 n = 5
 k = 10
 # 输出：3
-print(Solution().movingCount_bfs(m, n, k))
+print(Solution().movingCount_dfs(m, n, k))
