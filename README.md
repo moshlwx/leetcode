@@ -5,10 +5,13 @@
 - [剑指 Offer 31. 栈的压入、弹出序列](CODE/剑指%20Offer%2031.%20栈的压入、弹出序列.py)
 
 ## 二叉树
+二叉树大部分涉及递归思想
 ### 题目
 - [剑指 Offer 28. 对称的二叉树](CODE/剑指%20Offer%2028.%20对称的二叉树.py)
 - [236. 二叉树的最近公共祖先](CODE/236-二叉树的最近公共祖先.py)
 - [105. 从前序与中序遍历序列构造二叉树](CODE/105-从前序与中序遍历序列构造二叉树.py)
+- [剑指 Offer 55 - I. 二叉树的深度](CODE/剑指%20Offer%2055%20-%20I.%20二叉树的深度.py)
+- [剑指 Offer 55 - II. 平衡二叉树](CODE/剑指%20Offer%2055%20-%20II.%20平衡二叉树.py)
 ## 堆
 
 [引用自python doc](https://docs.python.org/zh-cn/3.8/library/heapq.html)
@@ -20,16 +23,16 @@
 
     定义了以下函数：
 
-    heapq.heappush(heap, item)
+    heapq.heappush(heap, item) 时间复杂度： O(log n)
     将 item 的值加入 heap 中，保持堆的不变性。
 
-    heapq.heappop(heap)
+    heapq.heappop(heap) 时间复杂度：O(log n)
     弹出并返回 heap 的最小的元素，保持堆的不变性。如果堆为空，抛出 IndexError 。使用 heap[0] ，可以只访问最小的元素而不弹出它。
 
     heapq.heappushpop(heap, item)
     将 item 放入堆中，然后弹出并返回 heap 的最小元素。该组合操作比先调用 heappush() 再调用 heappop() 运行起来更有效率。
 
-    heapq.heapify(x)
+    heapq.heapify(x) 时间复杂度： O(n)
     将list x 转换成堆，原地，线性时间内。
 
     heapq.heapreplace(heap, item)
@@ -115,9 +118,43 @@ def problem(nums: list):
 
 
 ## BFS
+二叉树的层次遍历
+### 基本流程
+1. 队列存储每一层选择（根节点）
+
+### 适用场景
+1. 二叉树层次遍历
+2. 寻找图中最短路径
+   
+```python
+from queue import Queue
+
+q = Queue()
+q.put(start)
+visited = set()
+depth = 0
+
+while not q.empty():
+    q_size = q.qsize()
+
+    for _ in range(q_size):
+        cur = q.get()
+        if cur == target:
+            return depth
+
+        for n in neighbor(cur):
+            if n and n not in visited:
+                q.put(n)
+                visited.add(q)
+        # 到这里时遍历完一层，深度增加
+        depth += 1
+# 遍历完没有目标，返回-1
+return -1
+```
+
 ### 题目
 - [139. 单词拆分](CODE/139-单词拆分.py)
-
+- [剑指 Offer 55 - I. 二叉树的深度](CODE/剑指%20Offer%2055%20-%20I.%20二叉树的深度.py)
 ## 滑动窗口
 
 ### 题目
