@@ -17,7 +17,7 @@
 [引用自python doc](https://docs.python.org/zh-cn/3.8/library/heapq.html)
 
 堆是一个二叉树，它的每个父节点的值都只会小于或等于所有孩子节点（的值）。 
-它使用了数组来实现：从零开始计数，对于所有的 k ，都有 heap[k] <= heap[2*k+1] 和 heap[k] <= heap[2*k+2]。
+它使用了数组来实现：从零开始计数，对于所有的 k ，都有 `heap[k] <= heap[2*k+1] 和 heap[k] <= heap[2*k+2]`。
 为了便于比较，不存在的元素被认为是无限大。 
 堆最有趣的特性在于**最小的元素总是在根结点**：heap[0]。
 
@@ -115,6 +115,20 @@ def problem(nums: list):
 ### 基本步骤
 1. 按照区间结束坐标排序区间
 2. 循环所有区间，若区间开始点大于（等于视题目要求算是否重叠）上个结束区间则认为不重叠，加入不重叠区间的集合
+
+```python
+# 按照结束区间倒序
+intervals_sorted = sorted(intervals, key=(lambda x: x[1]))
+intervals_min = []
+last_end = float('-inf')
+
+# 选择最早结束的区间，删除所有相交的区间
+for i in intervals_sorted:
+    # 相交属于重叠则>，不算重叠则>=
+    if i[0] >= last_end:
+        intervals_min.append(i)
+        last_end = i[1]
+```
 ### 题目
 - [435. 无重叠区间](CODE/435.%20无重叠区间.py)
 - [452. 用最少数量的箭引爆气球](CODE/452.%20用最少数量的箭引爆气球.py)

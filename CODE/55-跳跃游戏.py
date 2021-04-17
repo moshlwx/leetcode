@@ -25,25 +25,32 @@
 1 <= nums.length <= 3 * 104
 0 <= nums[i] <= 105
 '''
+
+
 class Solution:
     def canJump(self, nums) -> bool:
         '''
-        dp[i] 第i个位置能否到达
-        状态转移
-        dp[i] = dp[i-k] and nums(i-k)>k
+        贪心算法，坐标起点+步长算出区间
+        转换为重叠区间类问题
         '''
-        if nums == [0]:
-            return True
+        jump_range = []
+        # 坐标起点+补偿算出区间
+        for i, n in enumerate(nums):
+            jump_range.append([i, i+n])
 
-        dp = [False for _ in range(len(nums)+1)]
-        dp[0] = True
+        # 按照区间终点排序
+        jump_range_sorted = sorted(jump_range, key=lambda x: x[1])
+        max_end = jump_range_sorted[0][1]
 
-        for i in range(1, len(nums)+1):
-            for k in range(i, 0, -1):
-                # 边界存在问题，包括k的循环范围及nums的判断
-                dp[i] = dp[i] or (dp[i-k] and (nums[i-k]>=k-1))
-        
-        return dp[-1]
+        for i in jump_range_sorted:
+            if i[0] <= max_end:
+                max_end = max(max_end, i[1])
 
-nums = [2, 0, 0]
+            if max_end >= len(nums)-1:
+                return True
+
+        return False
+
+
+nums = [0]
 print(Solution().canJump(nums))
