@@ -146,8 +146,8 @@ while not q.empty():
             if n and n not in visited:
                 q.put(n)
                 visited.add(q)
-        # 到这里时遍历完一层，深度增加
-        depth += 1
+    # 到这里时遍历完一层，深度增加
+    depth += 1
 # 遍历完没有目标，返回-1
 return -1
 ```
