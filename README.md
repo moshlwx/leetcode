@@ -72,15 +72,13 @@ print(heappop(heap_small), -heappop(heap_big)) # output: 1, 2
 - [剑指 Offer 57. 和为s的两个数字](CODE/剑指%20Offer%2057.%20和为s的两个数字.py)
 
 ## 动态规划-背包问题
-### 思路
+
 - [[总结]动态规划](https://github.com/moshlwx/leetcode/blob/master/CODE/%5B%E6%80%BB%E7%BB%93%5D%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.py)
 - 背包问题九讲
   - 来自 <https://github.com/tianyicui/pack> or <https://www.kancloud.cn/kancloud/pack> 
-#### 基本流程
-1. 识别定义dp[j]：到第j步
-#### 适用场景
-1. 背包问题
-
+### 基本流程
+1. 识别定义`dp[j]`：到第j步时目标值的状态
+2. 输出状态转移公式`dp[j] = func(dp[j-1], nums[j-1-k])`
 
 示例代码
 ```python
@@ -94,6 +92,11 @@ def problem(nums: list):
                 dp[j] = max(dp[j], dp[j-k]+nums[j-k-1])
     return dp
 ```
+
+### 适用场景
+1. 背包问题
+2. O(N)复杂度的遍历问题
+
 ### 题目
 - [剑指 Offer 46. 把数字翻译成字符串](CODE/剑指%20Offer%2046.%20把数字翻译成字符串.py)
 - [55-跳跃游戏](CODE/55-跳跃游戏.py)
@@ -110,8 +113,6 @@ def problem(nums: list):
 
 ## 贪心算法
 
-### 常见应用
-1. 求不重叠子区间
 ### 基本步骤
 1. 按照区间结束坐标排序区间
 2. 循环所有区间，若区间开始点大于（等于视题目要求算是否重叠）上个结束区间则认为不重叠，加入不重叠区间的集合
@@ -129,6 +130,10 @@ for i in intervals_sorted:
         intervals_min.append(i)
         last_end = i[1]
 ```
+### 常见应用
+1. 求不重叠子区间
+2. 动态规划算法超复杂度的场景，相当利用局部最优特性减少遍历范围
+
 ### 题目
 - [435. 无重叠区间](CODE/435.%20无重叠区间.py)
 - [452. 用最少数量的箭引爆气球](CODE/452.%20用最少数量的箭引爆气球.py)
@@ -137,7 +142,32 @@ for i in intervals_sorted:
 ## 分治思想
 
 ## DFS
+### 基本流程
+1. 递归尝试所有选择
+2. 判断满足终止条件时更新路径，返回
 
+```python
+def dfs(path: list, choose: list):
+    # 判断返回
+    if len(path) == len(target) or not choose:  # 或其他满足条件
+        res.append(path)
+        return
+    # 递归尝试所有选择
+    for c in choose:
+        path.append(c)
+        dfs(path, choose-c)
+        path.pop()
+
+target = [1, 2, 3, 4]
+res = []
+choose = [1, 23, 4]
+dfs([], choose)
+print(res)
+```
+
+### 适用场景
+1. 全排列
+2. 所有可能性的一种遍历方法，复杂度同BFS
 ### 题目
 - [剑指 Offer 28. 对称的二叉树](CODE/剑指%20Offer%2028.%20对称的二叉树.py)
 - [139. 单词拆分](CODE/139-单词拆分.py)
@@ -148,26 +178,18 @@ for i in intervals_sorted:
 ### 基本流程
 1. 队列存储每一层选择（根节点）
 
-### 适用场景
-1. 二叉树层次遍历
-2. 寻找图中最短路径
-   
 ```python
 from queue import Queue
-
 q = Queue()
 q.put(start)
 visited = set()
 depth = 0
-
 while not q.empty():
     q_size = q.qsize()
-
     for _ in range(q_size):
         cur = q.get()
         if cur == target:
             return depth
-
         for n in neighbor(cur):
             if n and n not in visited:
                 q.put(n)
@@ -181,14 +203,108 @@ return -1
 ### 题目
 - [139. 单词拆分](CODE/139-单词拆分.py)
 - [剑指 Offer 55 - I. 二叉树的深度](CODE/剑指%20Offer%2055%20-%20I.%20二叉树的深度.py)
+
 ## 滑动窗口
+### 基本流程
+1. 移动右边界，更新窗口
+2. while左边界需要收缩，收缩左边界，更新窗口
+3. 窗口满足跳出条件，更新返回值
+
+```python
+def sliding_window(s: str, t: str):
+    '''基础问题，给定来源字符串s，找到符合t目标的窗口，or符合t目标的最值
+    '''
+    # 利用python collections.Counter类型统计频次，更方便操作，正常可用数组或字典代替
+    from collections import Counter
+    left = 0
+    right = 0
+    window = Counter()
+    # s_counter = Counter(s)
+    # t_counter = Counter(t)
+    valid_flag = False
+    res = 0
+    while right < len(s):
+        # 暂存入窗口值，移动右边界
+        c = s[right]
+        right += 1
+        # 更新窗口内数据
+        window[c] += 1
+        valid_flag = True if True else False
+        while not valid_flag: # 当不满足限制时，更新左边界
+            d = s[left]
+            left += 1
+            # 更新窗口内数据
+            window[d] -= 1
+            valid_flag = True if True else False
+        # 窗口更新完毕，此时窗口内状态满足while条件的跳出值，常在这里更新返回值
+        res = max(res, right - left)
+    return res
+```
+### 适用场景
+基础问题，给定来源字符串s，找到符合t目标的窗口，or符合t目标的最值
 
 ### 题目
 - [3. 无重复字符的最长子串](CODE/3-无重复字符的最长子串.py)
 - [剑指 Offer 63. 股票的最大利润](CODE/剑指%20Offer%2063.%20股票的最大利润.py)
   - 滑动窗口解法，通过额外保存历史低位值，右指针计算当前与历史低位值的差异，是简化版的滑动窗口
+
 ## 二分查找
+### 适用场景
 有序序列中查找目标值或边界的方法，复杂度一般`O(logN)`
+### 基本流程
+
+```python
+def binary_search(nums: list, target: int):
+    left = 0
+    right = len(nums) - 1
+    while left <= right:
+        # use // to get int result, revode error when nums[mid]
+        mid = left + (right-left)//2
+        if nums[mid] < target:  # target in right half
+            left = mid + 1
+        elif nums[mid] > target:  # in left half
+            right = mid - 1
+        else:  # nums[mid] == target
+            return mid
+    # no return after loop, return -1
+    return -1
+
+def binary_left_bound(nums: list, target: int):
+    left = 0
+    right = len(nums) - 1
+    while left <= right:
+        mid = left + (right-left)//2
+        if nums[mid] < target:
+            left = mid + 1
+        elif nums[mid] > target:
+            right = mid - 1
+        else:
+            right = mid - 1  # 区别点：nums[mid] == target时不返回，锁定左侧边界，更新右边界
+
+    # 检查越界、目标值不存在的情况，返回默认值
+    if left >= len(nums) or nums[left] != target:
+        return -1
+    return left
+
+def binary_right_bound(nums: list, target: int):
+    left = 0
+    right = len(nums) - 1
+
+    while left <= right:
+        mid = left + (right-left)//2
+
+        if nums[mid] < target:
+            left = mid + 1
+        elif nums[mid] > target:
+            right = mid - 1
+        else:
+            left = mid - 1  # 区别点：nums[mid] == target时不返回，锁定右侧边界，更新左边界
+
+    # 检查越界、目标值不存在的情况，返回默认值
+    if right < 0 or nums[right] != target:
+        return -1
+    return right
+```
 ### 题目
 - [剑指 Offer 57. 和为s的两个数字](CODE/剑指%20Offer%2057.%20和为s的两个数字.py)
   - 一种`O(NlogN)`的解法，通过二分查找有序数组中的目标值，但是10^6的数据量会超时
