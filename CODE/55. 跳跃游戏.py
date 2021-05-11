@@ -43,6 +43,7 @@ class Solution:
         max_end = jump_range_sorted[0][1]
 
         for i in jump_range_sorted:
+            # 判断当区间重叠时才继续跳跃更新max_end
             if i[0] <= max_end:
                 max_end = max(max_end, i[1])
 
