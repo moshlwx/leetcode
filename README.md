@@ -142,6 +142,7 @@ for i in intervals_sorted:
   - 气球边界接触也算作重叠，所以判断不重叠时`当前起点>上个区间的终点`，与435区别仅在`>=`
 - [55. 跳跃游戏](CODE/55.%20跳跃游戏.py)
 - [45. 跳跃游戏 II](CODE/45.%20跳跃游戏%20II.py)
+  - https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0045.%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII.md
 ## 分治思想
 
 ## DFS
