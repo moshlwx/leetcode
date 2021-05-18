@@ -35,6 +35,26 @@
 
 class Solution:
     def reconstructQueue(self, people):
+        '''身高低的排位不会影响高身高的ki值
+        所以，先排好身高高的相对位置，然后依次按照ki值插入数据即可
+        '''
+        queue = []
+
+        # key=lambda x: (-x[0], x[1])常用排序逻辑，先按照第一位倒序，相同的按照第二位升序
+        people_ordered = sorted(people, key=(lambda x: [-x[0], x[1]]))
+
+        for p in people_ordered:
+            # 顺序执行无须再判断插入位置，直接按照序号插入序列即可
+            # pre_cnt = 0
+            # while pre_cnt < p[1]:
+            #     pre_cnt += 1
+            # queue.insert(pre_cnt, p)
+
+            queue.insert(p[1], p)
+
+        return queue
+
+    def reconstructQueue_dfs(self, people):
         '''DFS全排列
         不符合限制时返回
         复杂度会超，考虑用局部最优特性做贪心优化
