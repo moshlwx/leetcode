@@ -118,6 +118,7 @@ def problem(nums: list):
   - [股票问题系列通解（转载翻译）](https://leetcode-cn.com/circle/article/qiAgHn/)
 - [剑指 Offer 13. 机器人的运动范围](CODE/剑指%20Offer%2013.%20机器人的运动范围.py)
   - 动态规划解法暂未实现，参考[剑指 Offer 47. 礼物的最大价值](CODE/剑指%20Offer%2047.%20礼物的最大价值.py)，二者场景很像
+- [322. 零钱兑换](CODE/322.%20零钱兑换)
 
 ## 贪心算法
 
