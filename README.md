@@ -76,6 +76,9 @@ print(heappop(heap_small), -heappop(heap_big)) # output: 1, 2
 - [[总结]动态规划](https://github.com/moshlwx/leetcode/blob/master/CODE/%5B%E6%80%BB%E7%BB%93%5D%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.py)
 - 背包问题九讲
   - 来自 <https://github.com/tianyicui/pack> or <https://www.kancloud.cn/kancloud/pack> 
+- [暴力解法、动态规划（Java）](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/bao-li-mei-ju-dong-tai-gui-hua-chai-fen-si-xiang-b/)
+- [股票问题系列通解（转载翻译）](https://leetcode-cn.com/circle/article/qiAgHn/)
+
 ### 基本流程
 1. 识别定义`dp[j]`：到第j步时目标值的状态
 2. 输出状态转移公式`dp[j] = func(dp[j-1], nums[j-1-k])`
@@ -110,6 +113,9 @@ def problem(nums: list):
 - [剑指 Offer 47. 礼物的最大价值](CODE/剑指%20Offer%2047.%20礼物的最大价值.py)
 - [剑指 Offer 63. 股票的最大利润](CODE/剑指%20Offer%2063.%20股票的最大利润.py)
   - 通过差分计算出每日利润，计算连续最大和即为最佳买卖时机，转换为[连续数组的最大和问题](CODE/剑指%20Offer%2042.%20连续子数组的最大和.py)
+- [714. 买卖股票的最佳时机含手续费](CODE/714.%20买卖股票的最佳时机含手续费.py)
+  - [暴力解法、动态规划（Java）](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/bao-li-mei-ju-dong-tai-gui-hua-chai-fen-si-xiang-b/)
+  - [股票问题系列通解（转载翻译）](https://leetcode-cn.com/circle/article/qiAgHn/)
 - [剑指 Offer 13. 机器人的运动范围](CODE/剑指%20Offer%2013.%20机器人的运动范围.py)
   - 动态规划解法暂未实现，参考[剑指 Offer 47. 礼物的最大价值](CODE/剑指%20Offer%2047.%20礼物的最大价值.py)，二者场景很像
 
@@ -155,6 +161,8 @@ for i in intervals_sorted:
   - 贪心优化的思路类似任务调度器，次高身高的人不会影响高人的相对顺序，所以只需要按照身高降序插入对应位置即可
 - [134. 加油站](CODE/134.%20加油站.py)
   - 基于暴力解法优化，下次遍历从当前能到达的最远加油站开始，复杂度减少到O(N)
+- [763. 划分字母区间](CODE/763.%20划分字母区间.py)
+
 ## 分治思想
 
 ## DFS
