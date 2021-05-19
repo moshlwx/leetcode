@@ -62,3 +62,31 @@ class Solution:
             min_depth += 1
 
         return -1
+
+    def minDepth_dfs(self, root: TreeNode) -> int:
+        '''DFS解法，遍历整棵树，存储最短路径
+        '''
+        if not root:
+            return 0
+
+        self.min_depth = float('inf')
+
+        def dfs(root, path):
+            # 裁剪深度超过当前最小深度的路径
+            if not root or len(path) >= self.min_depth:
+                return
+
+            if not root.left and not root.right:
+                # print(path)
+                self.min_depth = min(len(path), self.min_depth)
+                return
+
+            for n in [root.left, root.right]:
+                if n:
+                    path.append(n.val)
+                    dfs(n, path)
+                    path.pop()
+
+        dfs(root, [root.val])
+
+        return self.min_depth
