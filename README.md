@@ -214,8 +214,12 @@ visited = set()
 depth = 0
 while not q.empty():
     q_size = q.qsize()
+    row = []
     for _ in range(q_size):
         cur = q.get()
+        # 每层的记录在先序做，后序会需要较多的空值处理
+        row.append(cur.val)
+
         if cur == target:
             return depth
         for n in neighbor(cur):
@@ -232,7 +236,8 @@ return -1
 - [139. 单词拆分](CODE/139-单词拆分.py)
 - [剑指 Offer 55 - I. 二叉树的深度](CODE/剑指%20Offer%2055%20-%20I.%20二叉树的深度.py)
 - [剑指 Offer 13. 机器人的运动范围](CODE/剑指%20Offer%2013.%20机器人的运动范围.py)
-
+- [102. 二叉树的层序遍历](CODE/102.%20二叉树的层序遍历.py)
+- [107. 二叉树的层序遍历 II](CODE/107.%20二叉树的层序遍历%20II.py)
 ## 滑动窗口
 ### 基本流程
 1. 移动右边界，更新窗口
