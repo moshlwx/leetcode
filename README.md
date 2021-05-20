@@ -119,7 +119,8 @@ def problem(nums: list):
 - [剑指 Offer 13. 机器人的运动范围](CODE/剑指%20Offer%2013.%20机器人的运动范围.py)
   - 动态规划解法暂未实现，参考[剑指 Offer 47. 礼物的最大价值](CODE/剑指%20Offer%2047.%20礼物的最大价值.py)，二者场景很像
 - [322. 零钱兑换](CODE/322.%20零钱兑换)
-
+- [494. 目标和](CODE/494.%20目标和.py) 
+  - DFS暴力遍历会超复杂度，此类场景考虑记忆化or直接用DP
 ## 贪心算法
 
 ### 基本步骤
@@ -175,7 +176,8 @@ for i in intervals_sorted:
 def dfs(path: list, choose: list):
     # 判断返回
     if len(path) == len(target) or not choose:  # 或其他满足条件
-        res.append(path)
+        # 注意这里用path的深拷贝，避免浅拷贝产生引用
+        res.append(path.copy())
         return
     # 递归尝试所有选择
     for c in choose:
@@ -205,6 +207,9 @@ print(res)
 - [494. 目标和](CODE/494.%20目标和.py)
 - [111. 二叉树的最小深度](CODE/111.%20二叉树的最小深度.py)
   - 深度优先遍历整棵树，  当前深度超过最小深度时裁剪
+- 路径和问题
+  - [剑指 Offer 34. 二叉树中和为某一值的路径](CODE/剑指%20Offer%2034.%20二叉树中和为某一值的路径.py)
+  - [494. 目标和](CODE/494.%20目标和.py) DFS暴力遍历会超复杂度，考虑记忆化or直接用DP
 
 ## BFS
 二叉树的层次遍历

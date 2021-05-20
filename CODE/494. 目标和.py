@@ -7,7 +7,7 @@
 例如，nums = [2, 1] ，可以在 2 之前添加 '+' ，在 1 之前添加 '-' ，然后串联起来得到表达式 "+2-1" 。
 返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。
 
- 
+
 
 示例 1：
 
@@ -23,7 +23,7 @@
 
 输入：nums = [1], target = 1
 输出：1
- 
+
 
 提示：
 
@@ -37,32 +37,59 @@
 class Solution:
     def findTargetSumWays(self, nums, target: int) -> int:
         '''
-        DFS全排列，搜索目标值 
+        DFS全排列，搜索目标值，暴力解法O(2^n)，大用例会超时
+        考虑记忆化，减少重复运算 -> 类似场景都可以考虑DP
         '''
         self.res = 0
-        self.res_path = set()
+        # self.res_path = set()
+        # self.visited = [0] * 10000
 
-        def dfs(choose, sum_in, path):
-            if not choose:
+        def dfs(sum_in, i):
+            print(sum_in, i)
+            if i >= len(nums):
                 if sum_in == target:
-                    # print(choose, sum_in)
                     self.res += 1
-                    self.res_path.append(path.copy())
                 return
 
-            for i, c in enumerate(choose):
-                for sign in [1, -1]:
-                    sum_in += (sign * c)
-                    path += str(sign * c)
-                    dfs(choose[:i]+choose[i+1:], sum_in, path)
-                    sum_in -= (sign * c)
-                    path.pop()
+            for sign in [-1, 1]:
+                sum_in += (sign * nums[i])
+                dfs(sum_in, i+1)
+                sum_in -= (sign * nums[i])
 
-        dfs(nums, 0, '')
-        print(self.res_path)
+        dfs(0, 0)
 
         return self.res
 
+    def findTargetSumWays_dp(self, nums, S: int) -> int:
+        '''设取＋的集合之和为x，取-的集合之和为y
+        x+y = sum(nums)
+        x-y = S
+        求得'x = (S+sum(nums))/2'
+        转换为标准01背包问题
+        目标值: 'x = (S+sum(nums))/2'
+        dp[i][j]: i个数的组合能到j的方法数
+        '''
+        #  若目标大于集合总和返回0
+        # 用例[1,2,7,9,981] 1000000000
+        if S > sum(nums):
+            return 0
+
+        # 若为奇数返回0
+        if (S+sum(nums)) % 2 == 1:
+            return 0
+
+        x = (S+sum(nums))//2
+
+        dp = [0 for _ in range(x+1)]
+        # base case，空集合有一种方法满足目标为0
+        dp[0] = 1
+
+        for i in range(1, len(nums)+1):
+            for j in range(x, nums[i-1]-1, -1):
+                # 状态转移方程：放->dp[j-cost_i]种方法+不放->dp[j]种方法
+                dp[j] = dp[j] + dp[j - nums[i-1]]
+
+        return dp[-1]
 # 示例 1：
 
 
