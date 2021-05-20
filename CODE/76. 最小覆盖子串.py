@@ -22,6 +22,7 @@
 s 和 t 由英文字母组成
 '''
 
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         left = 0
@@ -32,6 +33,7 @@ class Solution:
 
         from collections import Counter
         window = Counter()
+        t_counter = Counter(t)
 
         while right < len(s):
             c = s[right]
@@ -39,27 +41,40 @@ class Solution:
 
             window[c] += 1
 
-            if c in t and window[c] == 1:
+            if window[c] == t_counter[c]:
                 vaild_cnt += 1
 
             # 当window覆盖所有t的子串
-            while vaild_cnt == len(t):
+            while vaild_cnt == len(t_counter):
+                if right-left < min_len:
+                    res = s[left: right]
+                    min_len = right - left
+
                 d = s[left]
                 left += 1
 
                 window[d] -= 1
 
-                if d in t and window[d] == 0:
+                if window[d] == t_counter[d]-1:
                     vaild_cnt -= 1
 
-            if right-left < min_len:
-                res = s[left: right]
-                min_len = right - left
-
         return res
-                
+
+
 # 输入：
 s = "ADOBECODEBANC"
 t = "ABC"
 # 输出："BANC"
+print(Solution().minWindow(s, t))
+
+# 输入：
+s = "aaa"
+t = "aaa"
+# 输出："aaa"
+print(Solution().minWindow(s, t))
+
+# 输入：
+s = "a"
+t = "ab"
+# 输出：""
 print(Solution().minWindow(s, t))
