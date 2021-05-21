@@ -308,6 +308,7 @@ def sliding_window(s: str, t: str):
 ## 二分查找
 ### 适用场景
 有序序列中查找目标值或边界的方法，复杂度一般`O(logN)`
+数据量超过1000万+有序（部分有序）即可以考虑二分查找
 ### 基本流程
 
 ```python
@@ -365,6 +366,10 @@ def binary_right_bound(nums: list, target: int):
 ### 题目
 - [剑指 Offer 57. 和为s的两个数字](CODE/剑指%20Offer%2057.%20和为s的两个数字.py)
   - 一种`O(NlogN)`的解法，通过二分查找有序数组中的目标值，但是10^6的数据量会超时
+- 寻找左边界
+  - [658. 找到 K 个最接近的元素](CDOE/../CODE/658.%20找到%20K%20个最接近的元素.py)
+  - [162. 寻找峰值](CODE/162.%20寻找峰值.py)
+
 ## 位运算
 [Python位运算及运算符优先级](https://www.runoob.com/python/python-operators.html)
 <table class="reference">
