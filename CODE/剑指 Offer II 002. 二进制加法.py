@@ -1,0 +1,61 @@
+'''
+剑指 Offer II 002. 二进制加法
+给定两个 01 字符串 a 和 b ，请计算它们的和，并以二进制字符串的形式输出。
+
+输入为 非空 字符串且只包含数字 1 和 0。
+
+ 
+
+示例 1:
+
+输入: a = "11", b = "10"
+输出: "101"
+示例 2:
+
+输入: a = "1010", b = "1011"
+输出: "10101"
+ 
+
+提示：
+
+每个字符串仅由字符 '0' 或 '1' 组成。
+1 <= a.length, b.length <= 10^4
+字符串如果不是 "0" ，就都不含前导零。
+ 
+
+注意：本题与主站 67 题相同：https://leetcode-cn.com/problems/add-binary/
+'''
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        '''按位处理字符串
+        '''
+
+        carry = 0
+        cur_a = 0
+        cur_b = 0
+        res = ''
+
+        len_a = len(a)
+        len_b = len(b)
+
+        max_len = max(len_a, len_b)
+        min_len = min(len_a, len_b)
+
+        for i in range(max_len):
+            if i <= min_len:
+                a_i = a[i]
+                b_i = b[i]
+            if i > len_a:
+                a_i = '0'
+                b_i = b[i]
+            if i > len_b:
+                a_i = a[i]
+                b_i = '0'
+
+            cur = (int(a[i]) + int(b[i]) + carry) % 2
+            carry = (int(a[i]) + int(b[i]) + carry) > 2
+            res = str(cur) + res
+
+
+        return res
