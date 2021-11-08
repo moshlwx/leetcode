@@ -42,10 +42,29 @@
 
 
 class Solution:
+
     def countBits(self, n: int):
+        # 暴力动态规划
+        # O(n)，每次判断是否当前最大2**k时重复计算
+        dp = [1]*(n+1)
+        k = 0
+
+        dp[0] = 0
+
+        for i in range(1, n+1):
+            if 2**(k+1) <= i:
+                k += 1 # 存放小于i的最大2**k
+
+            dp[i] = dp[2**k] + dp[i-2**k]
+
+        dp[0] = 0
+        return dp
+
+    def countBits_BK(self, n: int):
         # BK算法 x & (x-1) 可以将x最后一个1变更为0，执行次数为含1个数
         # O(n*log(n))
         out = []
+
         def count_ones(x):
             cnt = 0
             while x > 0:
@@ -59,5 +78,5 @@ class Solution:
         return out
 
 
-n = 10
+n = 5
 print(Solution().countBits(n))
