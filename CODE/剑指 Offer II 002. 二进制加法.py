@@ -26,9 +26,10 @@
 注意：本题与主站 67 题相同：https://leetcode-cn.com/problems/add-binary/
 '''
 
+
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
-        '''按位处理字符串
+        '''按位处理字符串 O(N)复杂度
         '''
 
         carry = 0
@@ -40,22 +41,21 @@ class Solution:
         len_b = len(b)
 
         max_len = max(len_a, len_b)
-        min_len = min(len_a, len_b)
+        a_with_0 = ('0'*max_len + a)[-max_len:]
+        b_with_0 = ('0'*max_len + b)[-max_len:]
 
-        for i in range(max_len):
-            if i <= min_len:
-                a_i = a[i]
-                b_i = b[i]
-            if i > len_a:
-                a_i = '0'
-                b_i = b[i]
-            if i > len_b:
-                a_i = a[i]
-                b_i = '0'
-
-            cur = (int(a[i]) + int(b[i]) + carry) % 2
-            carry = (int(a[i]) + int(b[i]) + carry) > 2
+        for i in range(max_len-1, -1, -1):
+            cur = (int(a_with_0[i]) + int(b_with_0[i]) + carry) % 2
+            carry = (int(a_with_0[i]) + int(b_with_0[i]) + carry) > 1
             res = str(cur) + res
 
+        if carry == 1:
+            res = '1' + res
 
         return res
+
+
+a = '10001111011'
+b = '1001'
+
+print(Solution().addBinary(a, b))
