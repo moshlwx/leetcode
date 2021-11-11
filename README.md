@@ -384,6 +384,17 @@ def binary_right_bound(nums: list, target: int):
   - [162. 寻找峰值](CODE/162.%20寻找峰值.py)
 
 ## 位运算
+进制转换[Python进制转换](https://www.runoob.com/python3/python3-conversion-binary-octal-hexadecimal.html)
+- 十进制 = int('134', n进制)
+- 二进制 = bin(十进制)
+- 八进制 = oct(十进制)
+- 十六进制 = hex(十进制)
+
+[有符号整数与无符号整数](https://leetcode-cn.com/problems/WGki4K/solution/zhi-chu-xian-yi-ci-de-shu-zi-by-leetcode-0vrt/
+)（python中无区分）
+- 「有符号整数类型」（即 \texttt{int}int 类型）的第 `31` 个二进制位（即最高位）是补码意义下的符号位，对应着 $-2^{31}$
+ - 「无符号整数类型」由于没有符号，第 `31` 个二进制位对应着 $2^{31}$
+
 [Python位运算及运算符优先级](https://www.runoob.com/python/python-operators.html)
 <table class="reference">
 <tbody><tr><th>运算符</th><th>描述</th></tr>
@@ -438,3 +449,4 @@ def binary_right_bound(nums: list, target: int):
 - [剑指 Offer II 002. 二进制加法](CODE/剑指%20Offer%20II%20002.%20二进制加法.py)
 - [剑指 Offer II 003. 前 n 个数字二进制中 1 的个数](CODE/剑指%20Offer%20II%20003.%20前%20n%20个数字二进制中%201%20的个数.py)
   - BK算法，通过x&(x-1)将x最后一个1替换为0
+- [剑指 Offer II 004. 只出现一次的数字](CODE/剑指%20Offer%20II%20004.%20只出现一次的数字%20.py)
