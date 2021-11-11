@@ -38,10 +38,17 @@ class Solution:
         位运算的一些trick可以快速计算是否重合
         '''
         res = [0]*len(words)
+        max_res = 0
 
         for i in range(len(words)):
             for c in words[i]:
                 res[i] |= 1 << ord(c) - ord('a')
+
+        for i in range(len(res)):
+            for j in range(i, len(res)):
+                if res[i] & res[j] == 0:
+                    # 按位与判断是否有重合，若结果为0，说明没有重合
+                    max_res = max(max_res, len(words[i])*len(words[j]))
 
         return max_res
 
