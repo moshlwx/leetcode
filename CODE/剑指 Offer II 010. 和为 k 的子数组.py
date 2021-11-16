@@ -57,16 +57,22 @@ class Solution:
         '''
         from collections import Counter
         res = 0
-        nums_sum = Counter(sum(nums[:i+1]) for i in range(len(nums)))
+        cur_sum = 0
 
+        nums_sum = Counter()
+        nums_sum[0] += 1
+        # 计算前缀和应该从第0位开始到最后一位，注意边界in range(len(nums)+1)
         for i, n in enumerate(nums):
-            if k-n in nums_sum.elements():
-                res += nums_sum.get(k-n)
+            # 如何在一次循环中维护前缀和与查找子数组
+            cur_sum += n
+            res += nums_sum[cur_sum-k] # cur_sum - nums_sum[j] 表示子数组nums[j: i]和为k
+            nums_sum[cur_sum] += 1
         return res
 
 
 # 输入:
-nums = [1, 2, 3]
+nums =[1, 2, 3]
+
 k = 3
-# 输出: 2
+# 输出: 4012
 print(Solution().subarraySum(nums, k))
