@@ -21,22 +21,43 @@
 
 提示:
 
-1 <= s.length <= 105
+1 <= s.length <= 10^5
 s 由小写英文字母组成
  
 
 注意：本题与主站 680 题相同： https://leetcode-cn.com/problems/valid-palindrome-ii/
 '''
 
+
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        buffer = 1
+        '''
+        基本思路同判断回文。遇到需要跳过的字符，需要分跳过左右的情况讨论
+        实际题目不需要考虑符合及大小写问题，暂时保留
+        '''
+        def subvalidPalindrome(sub_s):
+            # 双指针，头尾开始检查
+            left = 0
+            right = len(sub_s)-1
+
+            while left <= right:
+                if not sub_s[left].isalnum():
+                    left += 1
+                elif not sub_s[right].isalnum() and left < right:
+                    right -= 1
+                else:
+                    if sub_s[left].lower() != sub_s[right].lower():
+                        return False
+                    left += 1
+                    right -= 1
+
+            return True
 
         if len(s) == 0:
             return True
 
         # 双指针，头尾开始检查
-        
+
         left = 0
         right = len(s)-1
         while left <= right:
@@ -46,31 +67,23 @@ class Solution:
                 right -= 1
             else:
                 if s[left].lower() != s[right].lower():
-                    if buffer < 1:
-                        return False
-                    buffer -= 1
+                    # 左跳过 右跳过
+                    return subvalidPalindrome(s[left: right]) \
+                        or subvalidPalindrome(s[left+1: right+1])
                 left += 1
                 right -= 1
-        
-
-        def sub(sub_s):
-        # 双指针，头尾开始检查
-            left = 0
-            right = len(s)-1
-
-            while left <= right:
-                if not s[left].isalnum():
-                    left += 1
-                elif not s[right].isalnum() and left < right:
-                    right -= 1
-                else:
-                    if s[left].lower() != s[right].lower():
-                        return False
-                    left += 1
-                    right -= 1
-
-            return True
+        return True
 
 
 s = "aba"
+# 输出: true
+print(Solution().validPalindrome(s))
+
+s = "abca"
+# 输出: true
+# 解释: 可以删除 "c" 字符 或者 "b" 字符
+print(Solution().validPalindrome(s))
+
+s = "abc"
+# 输出: false
 print(Solution().validPalindrome(s))

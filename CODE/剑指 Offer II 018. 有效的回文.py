@@ -52,4 +52,15 @@ class Solution:
 
 
 s = "   "
+# true
+print(Solution().isPalindrome(s))
+
+
+s = "race a car"
+# false
+print(Solution().isPalindrome(s))
+
+
+s = "A man, a plan, a canal: Panama"
+# true
 print(Solution().isPalindrome(s))

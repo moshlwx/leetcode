@@ -62,5 +62,5 @@ class Solution:
 
 # 输入:
 s = "abcabcbbaefg"
-# 输出: 3
+# 输出: 5
 print(Solution().lengthOfLongestSubstring(s))
