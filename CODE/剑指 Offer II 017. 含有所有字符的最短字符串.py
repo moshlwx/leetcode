@@ -42,6 +42,7 @@ s 和 t 由英文字母组成
 
 import time
 
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         '''滑动窗口
@@ -62,22 +63,22 @@ class Solution:
         while right < len(s):
             c = s[right]
             right += 1
-            if c in window_target:
-                window_current[c] += 1
-                if window_current[c] <= window_target[c]:
-                    valid_len += 1
+
+            window_current[c] += 1
+            if window_current[c] == window_target[c]:
+                valid_len += 1
 
             # 循环结束时应当是左边界追上右边界，或者窗口跳出最小满足条件
-            while  left < right and valid_len == len(t):
+            while valid_len == len(window_target):
                 if right-left <= len(res):
                     res = s[left: right]
 
                 d = s[left]
                 left += 1
                 window_current[d] -= 1
-                if d in window_target and window_current[d] == window_target[d]-1:
+                if window_current[d] == window_target[d]-1:
                     valid_len -= 1
-                    
+
         # return res
         return res if len(res) <= len(s) else ""
 
