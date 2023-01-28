@@ -466,6 +466,7 @@ def binary_right_bound(nums: list, target: int):
 ### 适用场景
 - 数组中有正负数，找符合目标的子数组
 - 扩展到二维，子矩阵
+- 将重复计算结果缓存，预计算
 ### 基本流程
 1. 初始化遍历数组，计算前缀和
 2. 寻找目标值
@@ -476,3 +477,4 @@ def binary_right_bound(nums: list, target: int):
 - [剑指 Offer II 010. 和为 k 的子数组](CODE/剑指%20Offer%20II%20010.%20和为%20k%20的子数组.py)
 - [剑指 Offer II 011. 0 和 1 个数相同的子数组](CODE/剑指%20Offer%20II%20011.%200%20和%201%20个数相同的子数组.py)
 - [剑指 Offer II 013. 二维子矩阵的和](CODE/剑指%20Offer%20II%20013.%20二维子矩阵的和.py)
+- [1664. 生成平衡数组的方案数](CODE/1664.%20生成平衡数组的方案数.py)
