@@ -26,6 +26,7 @@
 - [105. 从前序与中序遍历序列构造二叉树](CODE/105.%20从前序与中序遍历序列构造二叉树.py)
 - [剑指 Offer 55 - I. 二叉树的深度](CODE/剑指%20Offer%2055%20-%20I.%20二叉树的深度.py)
 - [剑指 Offer 55 - II. 平衡二叉树](CODE/剑指%20Offer%2055%20-%20II.%20平衡二叉树.py)
+- [2331. 计算布尔二叉树的值](CODE/2331.%20计算布尔二叉树的值.py)
 ## 堆
 
 [引用自python doc](https://docs.python.org/zh-cn/3.8/library/heapq.html)
