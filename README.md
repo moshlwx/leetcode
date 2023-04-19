@@ -479,3 +479,4 @@ def binary_right_bound(nums: list, target: int):
 - [剑指 Offer II 011. 0 和 1 个数相同的子数组](CODE/剑指%20Offer%20II%20011.%200%20和%201%20个数相同的子数组.py)
 - [剑指 Offer II 013. 二维子矩阵的和](CODE/剑指%20Offer%20II%20013.%20二维子矩阵的和.py)
 - [1664. 生成平衡数组的方案数](CODE/1664.%20生成平衡数组的方案数.py)
+- [2409. 统计共同度过的日子数](CODE/2409.%20%E7%BB%9F%E8%AE%A1%E5%85%B1%E5%90%8C%E5%BA%A6%E8%BF%87%E7%9A%84%E6%97%A5%E5%AD%90%E6%95%B0.py)
